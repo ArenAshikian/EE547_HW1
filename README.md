@@ -17,28 +17,3 @@ The homework consists of three independent problems:
 
 Each problem is implemented separately and includes its own README explaining design choices.
 
----
-
-# Requirements
-
-- Python 3.11 or newer
-- Use **only Python standard library modules** unless explicitly stated
-- All submitted code must be your own work
-- No shared memory or direct inter-process communication unless specified
-- Programs must handle failures gracefully (no crashes)
-
----
-# Repository Structure
-
-README.md
-q1/
-├── merge_worker.py
-└── README.md
-
-q2/
-├── http_client.py
-└── README.md
-
-q3/
-├── event_logger.py
-└── README.md
