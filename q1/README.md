@@ -51,29 +51,16 @@ Overlap
 
 
 
-# Step 2: Overlap Case
-If the ranges overlap, workers switch to sending HEAD messages.
+# Step 2: Overlapping Ranges
 
-- Each worker sends its current smallest value
-- A worker only outputs values when it is safe compared to the partner's head
-- Values are output in chunks of up to 10 per step
+When the workers’ value ranges overlap, they switch to HEAD mode. Each worker sends its current smallest (head) value to the other worker. A worker only outputs values when it is safe to do so, meaning its head value is less than, or allowed to proceed relative to, the partner’s head value. Output is produced in chunks of up to 10 values per step to ensure steady progress and fairness.
 
-To prevent deadlock when both heads are equal:
-- Worker A outputs on equality
-- Worker B waits
+To prevent deadlock when both workers have the same head value, a fixed tie-breaking rule is used. Worker A is allowed to output when the head values are equal, while Worker B waits. This guarantees that progress is always made and the system cannot stall.
 
-This guarantees that progress is always made.
+## Work Balancing
 
+Work is naturally balanced based on the distribution of the data. When value ranges do not overlap, one worker performs most of the output, which avoids unnecessary coordination. When ranges do overlap, both workers actively participate by comparing head values and taking turns outputting results. Limiting the number of values output per step prevents any single worker from monopolizing the process.
 
-
-# Work Balancing
-
-Work is balanced naturally based on the data:
-
-- In non-overlapping cases, only one worker does most of the output, which avoids extra coordination.
-- In overlapping cases, both workers actively compare heads and take turns outputting values.
-- Output is limited per step so no worker monopolizes the process.
-
-This keeps both workers busy when needed and minimizes unnecessary work.
+This design keeps both workers busy when needed, minimizes coordination overhead, and ensures forward progress in all cases.
 
 
