@@ -11,9 +11,9 @@ This assignment explores foundational ideas in distributed systems, focusing on 
 
 The homework consists of three independent problems:
 
-1. **Distributed Merge** — coordination via file-based message passing  
-2. **Robust HTTP Client** — handling unreliable networks with retries and backoff  
-3. **Durable Event Log** — persistence under reordering, duplication, corruption, and termination
+1. **Distributed Merge**  coordination via file-based message passing  
+2. **Robust HTTP Client**  handling unreliable networks with retries and backoff  
+3. **Durable Event Log**  persistence under reordering, duplication, corruption, and termination
 
 Each problem is implemented separately and includes its own README explaining design choices.
 
